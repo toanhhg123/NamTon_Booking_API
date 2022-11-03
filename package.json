@@ -6,9 +6,12 @@
   "author": "toanhhg123 <toanhhg123@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "md5": "^2.3.0",
     "mysql2": "^2.3.3",
     "sequelize": "^6.25.3"
   },

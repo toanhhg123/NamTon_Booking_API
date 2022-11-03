@@ -1,7 +1,7 @@
 const { Model, DataTypes } = require("sequelize");
 const { sequelize } = require("../connect/sequelize");
 
-class Flim extends Model {
+class Film extends Model {
   id;
   movieName;
   desc;
@@ -18,7 +18,7 @@ class Flim extends Model {
   state;
 }
 
-Flim.init(
+Film.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -71,4 +71,4 @@ Flim.init(
   }
 );
 
-module.exports = Flim;
+module.exports = Film;
