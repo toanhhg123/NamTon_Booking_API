@@ -3,6 +3,7 @@ const md5 = require("md5");
 const { ROLE } = require("../constanis");
 const User = require("../models/user.model");
 var jwt = require("jsonwebtoken");
+const JwtService = require("../services/jwt.service");
 require("dotenv").config();
 
 const register = expressAsyncHandler(async (req, res) => {
@@ -45,11 +46,10 @@ const login = expressAsyncHandler(async (req, res) => {
     if (user.dataValues.password !== md5(password))
       throw new Error("password not found");
 
-    var token = jwt.sign(
-      { ...user.dataValues, password: null },
-      process.env.PRIVATE_KEY_JWT,
-      { expiresIn: "10d" }
-    );
+    var token = JwtService.genarateToken({
+      ...user.dataValues,
+      password: null,
+    });
 
     return res.json({
       userInfo: { ...user.dataValues, password: null },
@@ -101,14 +101,21 @@ const updateUser = expressAsyncHandler(async (req, res) => {
       },
       { where: { id } }
     );
+    const usernew = await User.findOne({ where: { id } });
+
     // update
     // user.username = username || data.username;
     // user.email = email || data.email;
     // user.password = md5(password) || data.password;
     // user.date = date || data.date;
     // user.address = address || data.address;
-    // user.phoneNumber = phoneNumber || data.phoneNumber;
-    return res.json(updateUser);
+    // user.phoneNumber = phoneNumber || data.phoneNumber;``````````
+    var token = JwtService.genarateToken({
+      ...usernew.dataValues,
+      password: null,
+    });
+
+    return res.json({ token });
   } catch (error) {
     return res.status(400).json({ message: error.message });
   }

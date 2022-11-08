@@ -6,6 +6,7 @@ const { seedDb, seedAdmin } = require("../seed");
 evn.config();
 
 const userRoute = require("./routes/user.route");
+const JwtService = require("./services/jwt.service");
 
 const app = express();
 
@@ -24,7 +25,6 @@ app.get("/", (req, res) => {
 app.use("/auth", userRoute);
 app.post("/seed", seedDb);
 app.post("/seedAdmin", seedAdmin);
-
 connectDB();
 const port = process.env.PORT || 8081;
 

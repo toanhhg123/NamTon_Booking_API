@@ -68,6 +68,9 @@ Film.init(
   {
     sequelize,
     timestamps: true,
+    hooks: {
+      afterCreate: (film) => {},
+    },
   }
 );
 
