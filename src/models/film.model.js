@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require("sequelize");
 const { sequelize } = require("../connect/sequelize");
+const Cinema = require("./Cinema.model");
 
 class Film extends Model {
   id;
@@ -69,7 +70,10 @@ Film.init(
     sequelize,
     timestamps: true,
     hooks: {
-      afterCreate: (film) => {},
+      beforeCreate: async (film) => {
+        if (!(await Cinema.findByPk(film.getDataValue("cinemaId"))))
+          throw new Error("not found Cinema");
+      },
     },
   }
 );

@@ -1,6 +1,8 @@
 const expressAsyncHandler = require("express-async-handler");
 const md5 = require("md5");
 const { ROLE } = require("./src/constanis");
+const Cinema = require("./src/models/Cinema.model");
+const Comment = require("./src/models/comment.model");
 const Film = require("./src/models/film.model");
 const User = require("./src/models/user.model");
 
@@ -10,6 +12,12 @@ const seedDb = expressAsyncHandler(async (req, res) => {
     console.log("User model build success");
     await Film.sync({ alter: false });
     console.log("Film model build success");
+
+    await Cinema.sync({ alter: false });
+    console.log("Cinema model build success");
+
+    await Comment.sync({ alter: false });
+    console.log("Comment model build success");
     res.json("success");
   } catch (error) {
     console.log("fail build db", { error });

@@ -6,6 +6,9 @@ const { seedDb, seedAdmin } = require("../seed");
 evn.config();
 
 const userRoute = require("./routes/user.route");
+const cinemaRoute = require("./routes/cinema.route");
+const filmRoute = require("./routes/film.route");
+
 const JwtService = require("./services/jwt.service");
 
 const app = express();
@@ -23,7 +26,10 @@ app.get("/", (req, res) => {
   return res.json("oke");
 });
 app.use("/auth", userRoute);
-app.post("/seed", seedDb);
+app.use("/cinema", cinemaRoute);
+app.use("/film", filmRoute);
+
+app.get("/seed", seedDb);
 app.post("/seedAdmin", seedAdmin);
 connectDB();
 const port = process.env.PORT || 8081;

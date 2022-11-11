@@ -1,24 +1,28 @@
 const { Model, DataTypes } = require("sequelize");
 const { sequelize } = require("../connect/sequelize");
 
-class Cinema extends Model {
+class Comment extends Model {
   id;
-  cinemaName;
-  address;
+  userId;
+  content;
+  filmId;
 }
 
-Cinema.init(
+Comment.init(
   {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
-    cinemaName: {
+    content: {
       type: DataTypes.STRING,
     },
-    address: {
-      type: DataTypes.STRING,
+    userId: {
+      type: DataTypes.INTEGER,
+    },
+    filmId: {
+      type: DataTypes.INTEGER,
     },
   },
   {
@@ -27,4 +31,4 @@ Cinema.init(
   }
 );
 
-module.exports = Cinema;
+module.exports = Comment;
