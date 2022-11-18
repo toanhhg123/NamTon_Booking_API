@@ -1,28 +1,37 @@
 const { Model, DataTypes } = require("sequelize");
 const { sequelize } = require("../connect/sequelize");
+const Cinema = require("./Cinema.model");
 const Film = require("./film.model");
 
-class Comment extends Model {
+class DisCount extends Model {
   id;
-  userId;
-  content;
   filmId;
+  dateStart;
+  dateEnd;
+  img;
+  percent;
 }
 
-Comment.init(
+DisCount.init(
   {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
-    content: {
-      type: DataTypes.STRING,
+    dateStart: {
+      type: DataTypes.DATE,
     },
-    userId: {
-      type: DataTypes.INTEGER,
+    dateEnd: {
+      type: DataTypes.DATE,
     },
     filmId: {
+      type: DataTypes.INTEGER,
+    },
+    img: {
+      type: DataTypes.STRING,
+    },
+    percent: {
       type: DataTypes.INTEGER,
     },
   },
@@ -30,12 +39,12 @@ Comment.init(
     sequelize,
     timestamps: true,
     hooks: {
-      beforeCreate: async (commnet) => {
-        if (!(await Film.findByPk(commnet.getDataValue("filmId"))))
+      beforeCreate: async (DisCount) => {
+        if (!(await Film.findByPk(DisCount.getDataValue("filmId"))))
           throw new Error("not found Film");
       },
     },
   }
 );
 
-module.exports = Comment;
+module.exports = DisCount;

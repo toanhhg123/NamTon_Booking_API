@@ -1,28 +1,32 @@
 const { Model, DataTypes } = require("sequelize");
 const { sequelize } = require("../connect/sequelize");
-const Film = require("./film.model");
+const Cinema = require("./Cinema.model");
 
-class Comment extends Model {
+class Room extends Model {
   id;
-  userId;
-  content;
-  filmId;
+  RoomName;
+  address;
+  cinemaId;
+  seat;
 }
 
-Comment.init(
+Room.init(
   {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
-    content: {
+    RoomName: {
       type: DataTypes.STRING,
     },
-    userId: {
+    address: {
+      type: DataTypes.STRING,
+    },
+    cinemaId: {
       type: DataTypes.INTEGER,
     },
-    filmId: {
+    seat: {
       type: DataTypes.INTEGER,
     },
   },
@@ -30,12 +34,12 @@ Comment.init(
     sequelize,
     timestamps: true,
     hooks: {
-      beforeCreate: async (commnet) => {
-        if (!(await Film.findByPk(commnet.getDataValue("filmId"))))
-          throw new Error("not found Film");
+      beforeCreate: async (room) => {
+        if (!(await Cinema.findByPk(room.getDataValue("cinemaId"))))
+          throw new Error("not found cinema");
       },
     },
   }
 );
 
-module.exports = Comment;
+module.exports = Room;

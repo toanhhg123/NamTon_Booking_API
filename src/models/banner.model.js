@@ -1,41 +1,38 @@
 const { Model, DataTypes } = require("sequelize");
 const { sequelize } = require("../connect/sequelize");
+const Cluster = require("./cluster.model");
 const Film = require("./film.model");
 
-class Comment extends Model {
+class Banner extends Model {
   id;
-  userId;
-  content;
   filmId;
+  img;
 }
 
-Comment.init(
+Banner.init(
   {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
-    content: {
-      type: DataTypes.STRING,
-    },
-    userId: {
-      type: DataTypes.INTEGER,
-    },
     filmId: {
       type: DataTypes.INTEGER,
+    },
+    img: {
+      type: DataTypes.STRING,
     },
   },
   {
     sequelize,
     timestamps: true,
     hooks: {
-      beforeCreate: async (commnet) => {
-        if (!(await Film.findByPk(commnet.getDataValue("filmId"))))
+      beforeCreate: async (banner) => {
+        if (!(await Film.findByPk(banner.getDataValue("filmId"))))
           throw new Error("not found Film");
       },
     },
   }
 );
 
-module.exports = Comment;
+module.exports = Banner;

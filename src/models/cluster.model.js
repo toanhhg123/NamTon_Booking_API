@@ -1,30 +1,25 @@
 const { Model, DataTypes } = require("sequelize");
 const { sequelize } = require("../connect/sequelize");
-const Cluster = require("./cluster.model");
 
-class Cinema extends Model {
+class Cluster extends Model {
   id;
-  cinemaName;
+  ClusterName;
   address;
-  clusterId;
   img;
 }
 
-Cinema.init(
+Cluster.init(
   {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
-    cinemaName: {
+    ClusterName: {
       type: DataTypes.STRING,
     },
     address: {
       type: DataTypes.STRING,
-    },
-    clusterId: {
-      type: DataTypes.INTEGER,
     },
     img: {
       type: DataTypes.STRING,
@@ -33,13 +28,7 @@ Cinema.init(
   {
     sequelize,
     timestamps: true,
-    hooks: {
-      beforeCreate: async (cinema) => {
-        if (!(await Cluster.findByPk(cinema.getDataValue("clusterId"))))
-          throw new Error("not found Cluster");
-      },
-    },
   }
 );
 
-module.exports = Cinema;
+module.exports = Cluster;
