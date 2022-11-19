@@ -8,8 +8,10 @@ evn.config();
 const userRoute = require("./routes/user.route");
 const cinemaRoute = require("./routes/cinema.route");
 const filmRoute = require("./routes/film.route");
-
-const JwtService = require("./services/jwt.service");
+const roomRoute = require("./routes/room.route");
+const clusterRoute = require("./routes/cluster.route");
+const bannerRoute = require("./routes/banner.route");
+const booksRoute = require("./routes/book.route");
 
 const app = express();
 
@@ -28,6 +30,10 @@ app.get("/", (req, res) => {
 app.use("/auth", userRoute);
 app.use("/cinema", cinemaRoute);
 app.use("/film", filmRoute);
+app.use("/room", roomRoute);
+app.use("/cluster", clusterRoute);
+app.use("/banner", bannerRoute);
+app.use("/book", booksRoute);
 
 app.get("/seed", seedDb);
 app.post("/seedAdmin", seedAdmin);
