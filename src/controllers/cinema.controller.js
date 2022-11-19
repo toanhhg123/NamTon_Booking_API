@@ -6,9 +6,7 @@ require("dotenv").config();
 
 const createCinema = expressAsyncHandler(async (req, res) => {
   try {
-    const { cinemaName, address } = req.body;
-
-    const cinema = await Cinema.create({ cinemaName, address });
+    const cinema = await Cinema.create(req.body);
     return res.json(cinema);
   } catch (error) {
     return res.status(404).json(error.message);
@@ -18,6 +16,16 @@ const createCinema = expressAsyncHandler(async (req, res) => {
 const getAllCinema = expressAsyncHandler(async (req, res) => {
   try {
     const cinemas = await Cinema.findAll();
+    return res.json(cinemas);
+  } catch (error) {
+    return res.status(404).json(error.message);
+  }
+});
+
+const getAllCinemaByCluster = expressAsyncHandler(async (req, res) => {
+  try {
+    const { id } = req.params;
+    const cinemas = await Cinema.findAll({ where: { clusterId: id } });
     return res.json(cinemas);
   } catch (error) {
     return res.status(404).json(error.message);
@@ -38,4 +46,5 @@ module.exports = {
   createCinema,
   getAllCinema,
   deleteCinema,
+  getAllCinemaByCluster,
 };
