@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require("sequelize");
 const { sequelize } = require("../connect/sequelize");
+const Cinema = require("./Cinema.model");
 
 class Cluster extends Model {
   id;
@@ -31,4 +32,5 @@ Cluster.init(
   }
 );
 
+Cluster.hasMany(Cinema);
 module.exports = Cluster;

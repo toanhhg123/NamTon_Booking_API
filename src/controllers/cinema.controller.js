@@ -2,6 +2,7 @@ const expressAsyncHandler = require("express-async-handler");
 const md5 = require("md5");
 const { ROLE } = require("../constanis");
 const Cinema = require("../models/Cinema.model");
+const Film = require("../models/film.model");
 require("dotenv").config();
 
 const createCinema = expressAsyncHandler(async (req, res) => {
@@ -15,7 +16,7 @@ const createCinema = expressAsyncHandler(async (req, res) => {
 
 const getAllCinema = expressAsyncHandler(async (req, res) => {
   try {
-    const cinemas = await Cinema.findAll();
+    const cinemas = await Cinema.findAll({ include: Film });
     return res.json(cinemas);
   } catch (error) {
     return res.status(404).json(error.message);

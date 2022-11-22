@@ -10,6 +10,17 @@ class Book extends Model {
   dateStart;
   roomId;
   seatIndex;
+
+  // allows null
+  paymentId;
+  email;
+  payerAddress;
+  name;
+  time;
+  location;
+  price;
+  priceUnit;
+  transacionHash;
 }
 
 Book.init(
@@ -30,6 +41,42 @@ Book.init(
     },
     img: {
       type: DataTypes.STRING,
+    },
+    paymentId: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    payerAddress: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    time: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    location: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    price: {
+      type: DataTypes.DOUBLE,
+      allowNull: true,
+    },
+    priceUnit: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    transacionHash: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
   },
   {

@@ -61,6 +61,10 @@ Film.init(
     },
     cinemaId: {
       type: DataTypes.INTEGER,
+      references: {
+        model: Cinema,
+        key: "id",
+      },
     },
     state: {
       type: DataTypes.STRING,
@@ -69,12 +73,7 @@ Film.init(
   {
     sequelize,
     timestamps: true,
-    hooks: {
-      beforeCreate: async (film) => {
-        if (!(await Cinema.findByPk(film.getDataValue("cinemaId"))))
-          throw new Error("not found Cinema");
-      },
-    },
+    hooks: {},
   }
 );
 

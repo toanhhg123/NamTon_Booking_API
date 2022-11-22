@@ -21,17 +21,14 @@ const seedDb = expressAsyncHandler(async (req, res) => {
     await Comment.sync({ alter: true });
     console.log("Comment model build success");
 
-    await Cinema.sync({ alter: true });
-    console.log("Cinema model build success");
-
     await DisCount.sync({ alter: true });
     console.log("Discount model build success");
 
-    await Cluster.sync({ alter: true });
-    console.log("Cluster model build success");
+    // await Cluster.sync({ alter: true });
+    // console.log("Cluster model build success");
 
-    await Cinema.sync({ alter: true });
-    console.log("Cinema model build success");
+    // await Cinema.sync({ alter: true });
+    // console.log("Cinema model build success");
 
     await Room.sync({ alter: true });
     console.log("Room model build success");
@@ -41,6 +38,7 @@ const seedDb = expressAsyncHandler(async (req, res) => {
 
     await Book.sync({ alter: true });
     console.log("Book model build success");
+
     res.json("success");
   } catch (error) {
     console.log("fail build db", { error });
