@@ -15,6 +15,16 @@ const seedDb = expressAsyncHandler(async (req, res) => {
   try {
     await User.sync({ alter: true });
     console.log("User model build success");
+
+    await Cluster.sync({ alter: true });
+    console.log("Cluster model build success");
+
+    await Cinema.sync({ alter: true });
+    console.log("Cinema model build success");
+
+    await Room.sync({ alter: true });
+    console.log("Room model build success");
+
     await Film.sync({ alter: true });
     console.log("Film model build success");
 
@@ -23,15 +33,6 @@ const seedDb = expressAsyncHandler(async (req, res) => {
 
     await DisCount.sync({ alter: true });
     console.log("Discount model build success");
-
-    // await Cluster.sync({ alter: true });
-    // console.log("Cluster model build success");
-
-    // await Cinema.sync({ alter: true });
-    // console.log("Cinema model build success");
-
-    await Room.sync({ alter: true });
-    console.log("Room model build success");
 
     await Banner.sync({ alter: true });
     console.log("Banner model build success");

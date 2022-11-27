@@ -32,5 +32,5 @@ Cluster.init(
   }
 );
 
-Cluster.hasMany(Cinema);
+// Cluster.hasMany(Cinema);
 module.exports = Cluster;

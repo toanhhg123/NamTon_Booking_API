@@ -62,7 +62,7 @@ Film.init(
     cinemaId: {
       type: DataTypes.INTEGER,
       references: {
-        model: Cinema,
+        model: "cinemas",
         key: "id",
       },
     },

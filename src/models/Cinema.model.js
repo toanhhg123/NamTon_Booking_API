@@ -48,6 +48,6 @@ Cinema.init(
   }
 );
 
-Cinema.hasMany(Film);
+// Cinema.hasMany(Film);
 
 module.exports = Cinema;
