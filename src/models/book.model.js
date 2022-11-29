@@ -5,10 +5,8 @@ const Film = require("./film.model");
 
 class Book extends Model {
   id;
-  filmId;
   userId;
-  dateStart;
-  roomId;
+  playTimeId;
   seatIndex;
 
   // allows null
@@ -33,8 +31,12 @@ Book.init(
     dateStart: {
       type: DataTypes.DATE,
     },
-    filmId: {
+    playTimeId: {
       type: DataTypes.INTEGER,
+      references: {
+        model: "playtimes",
+        key: "id",
+      },
     },
     seatIndex: {
       type: DataTypes.INTEGER,
@@ -82,22 +84,6 @@ Book.init(
   {
     sequelize,
     timestamps: true,
-    hooks: {
-      beforeCreate: async (book) => {
-        if (!(await Film.findByPk(book.getDataValue("filmId"))))
-          throw new Error("not found Film");
-
-        if (
-          await Book.findOne({
-            where: {
-              roomId: book.getDataValue("roomId"),
-              seatIndex: book.getDataValue("seatIndex"),
-            },
-          })
-        )
-          throw new Error("seat is exist");
-      },
-    },
   }
 );
 

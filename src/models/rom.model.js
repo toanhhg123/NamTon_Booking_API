@@ -25,6 +25,10 @@ Room.init(
     },
     cinemaId: {
       type: DataTypes.INTEGER,
+      references: {
+        model: "cinemas",
+        key: "id",
+      },
     },
     seat: {
       type: DataTypes.INTEGER,

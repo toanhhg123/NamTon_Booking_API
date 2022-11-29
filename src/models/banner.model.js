@@ -18,6 +18,10 @@ Banner.init(
     },
     filmId: {
       type: DataTypes.INTEGER,
+      references: {
+        model: "films",
+        key: "id",
+      },
     },
     img: {
       type: DataTypes.STRING,
@@ -26,12 +30,6 @@ Banner.init(
   {
     sequelize,
     timestamps: true,
-    hooks: {
-      beforeCreate: async (banner) => {
-        if (!(await Film.findByPk(banner.getDataValue("filmId"))))
-          throw new Error("not found Film");
-      },
-    },
   }
 );
 

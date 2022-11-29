@@ -1,28 +1,23 @@
 const { Model, DataTypes } = require("sequelize");
 const { sequelize } = require("../connect/sequelize");
-const Cinema = require("./Cinema.model");
+const Cluster = require("./cluster.model");
 const Film = require("./film.model");
 
-class DisCount extends Model {
+class PlayTime extends Model {
   id;
+  timeStart;
   filmId;
-  dateStart;
-  dateEnd;
-  img;
-  percent;
+  roomId;
 }
 
-DisCount.init(
+PlayTime.init(
   {
     id: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
       primaryKey: true,
     },
-    dateStart: {
-      type: DataTypes.DATE,
-    },
-    dateEnd: {
+    timeStart: {
       type: DataTypes.DATE,
     },
     filmId: {
@@ -32,11 +27,12 @@ DisCount.init(
         key: "id",
       },
     },
-    img: {
-      type: DataTypes.STRING,
-    },
-    percent: {
+    roomId: {
       type: DataTypes.INTEGER,
+      references: {
+        model: "rooms",
+        key: "id",
+      },
     },
   },
   {
@@ -45,4 +41,4 @@ DisCount.init(
   }
 );
 
-module.exports = DisCount;
+module.exports = PlayTime;
