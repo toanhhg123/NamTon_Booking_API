@@ -32,5 +32,4 @@ Cluster.init(
   }
 );
 
-// Cluster.hasMany(Cinema);
 module.exports = Cluster;

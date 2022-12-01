@@ -38,6 +38,13 @@ Book.init(
         key: "id",
       },
     },
+    userId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "Users",
+        key: "id",
+      },
+    },
     seatIndex: {
       type: DataTypes.INTEGER,
     },

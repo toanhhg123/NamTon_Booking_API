@@ -1,5 +1,9 @@
 const expressAsyncHandler = require("express-async-handler");
 const Book = require("../models/book.model");
+const Film = require("../models/film.model");
+const PlayTime = require("../models/PlayTime.model");
+const Room = require("../models/rom.model");
+const User = require("../models/user.model");
 
 const createBook = expressAsyncHandler(async (req, res) => {
   try {
@@ -13,7 +17,21 @@ const createBook = expressAsyncHandler(async (req, res) => {
 const getAllBookByFilm = expressAsyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
-    const data = await Book.findAll({ where: { filmId: id } });
+    const data = await Book.findAll({
+      where: { filmId: id },
+      include: [{ model: PlayTime }, { model: User }],
+    });
+    return res.json(data);
+  } catch (error) {
+    return res.status(404).json(error.message);
+  }
+});
+
+const getAllBook = expressAsyncHandler(async (req, res) => {
+  try {
+    const data = await Book.findAll({
+      include: [{ model: PlayTime, include: Room }, { model: User }],
+    });
     return res.json(data);
   } catch (error) {
     return res.status(404).json(error.message);
@@ -23,7 +41,10 @@ const getAllBookByFilm = expressAsyncHandler(async (req, res) => {
 const getAllBookByRoom = expressAsyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
-    const data = await Book.findAll({ where: { roomId: id } });
+    const data = await Book.findAll({
+      where: { roomId: id },
+      include: [{ model: PlayTime, include: Room }, { model: User }],
+    });
     return res.json(data);
   } catch (error) {
     return res.status(404).json(error.message);
@@ -56,4 +77,5 @@ module.exports = {
   getAllBookByFilm,
   getAllBookByRoom,
   getAllBookById,
+  getAllBook,
 };

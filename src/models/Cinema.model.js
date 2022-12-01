@@ -2,6 +2,7 @@ const { Model, DataTypes } = require("sequelize");
 const { sequelize } = require("../connect/sequelize");
 const Cluster = require("./cluster.model");
 const Film = require("./film.model");
+const Room = require("./rom.model");
 
 class Cinema extends Model {
   id;
@@ -47,7 +48,5 @@ Cinema.init(
     },
   }
 );
-
-// Cinema.hasMany(Film);
 
 module.exports = Cinema;

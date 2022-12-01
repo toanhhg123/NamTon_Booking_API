@@ -19,6 +19,7 @@ PlayTime.init(
     },
     timeStart: {
       type: DataTypes.DATE,
+      allowNull: false,
     },
     filmId: {
       type: DataTypes.INTEGER,
@@ -26,6 +27,7 @@ PlayTime.init(
         model: "films",
         key: "id",
       },
+      allowNull: false,
     },
     roomId: {
       type: DataTypes.INTEGER,
@@ -33,6 +35,7 @@ PlayTime.init(
         model: "rooms",
         key: "id",
       },
+      allowNull: false,
     },
   },
   {

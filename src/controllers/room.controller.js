@@ -1,4 +1,6 @@
 const expressAsyncHandler = require("express-async-handler");
+const Cinema = require("../models/Cinema.model");
+const { associations } = require("../models/rom.model");
 const Room = require("../models/rom.model");
 
 const createRoom = expressAsyncHandler(async (req, res) => {
@@ -20,6 +22,15 @@ const getAllRoomByCinema = expressAsyncHandler(async (req, res) => {
   }
 });
 
+const getAllRoom = expressAsyncHandler(async (req, res) => {
+  try {
+    const data = await Room.findAll({ include: Cinema });
+    return res.json(data);
+  } catch (error) {
+    return res.status(404).json(error.message);
+  }
+});
+
 const deleteRoom = expressAsyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
@@ -33,4 +44,5 @@ module.exports = {
   createRoom,
   deleteRoom,
   getAllRoomByCinema,
+  getAllRoom,
 };

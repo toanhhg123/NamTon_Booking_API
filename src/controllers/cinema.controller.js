@@ -3,6 +3,7 @@ const md5 = require("md5");
 const { ROLE } = require("../constanis");
 const Cinema = require("../models/Cinema.model");
 const Film = require("../models/film.model");
+const Room = require("../models/rom.model");
 require("dotenv").config();
 
 const createCinema = expressAsyncHandler(async (req, res) => {
@@ -16,7 +17,9 @@ const createCinema = expressAsyncHandler(async (req, res) => {
 
 const getAllCinema = expressAsyncHandler(async (req, res) => {
   try {
-    const cinemas = await Cinema.findAll({ include: Film });
+    const cinemas = await Cinema.findAll({
+      include: [{ model: Film }, { model: Room }],
+    });
     return res.json(cinemas);
   } catch (error) {
     return res.status(404).json(error.message);

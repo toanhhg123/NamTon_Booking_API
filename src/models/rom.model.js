@@ -37,12 +37,6 @@ Room.init(
   {
     sequelize,
     timestamps: true,
-    hooks: {
-      beforeCreate: async (room) => {
-        if (!(await Cinema.findByPk(room.getDataValue("cinemaId"))))
-          throw new Error("not found cinema");
-      },
-    },
   }
 );
 

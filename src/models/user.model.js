@@ -12,37 +12,39 @@ class User extends Model {
   role;
 }
 
-User.init({
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
+User.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    username: {
+      type: DataTypes.STRING,
+    },
+    password: {
+      type: DataTypes.STRING,
+    },
+    email: {
+      type: DataTypes.STRING,
+    },
+    phoneNumber: {
+      type: DataTypes.STRING,
+    },
+    address: {
+      type: DataTypes.STRING,
+    },
+    role: {
+      type: DataTypes.STRING,
+    },
+    date: {
+      type: DataTypes.DATE,
+    },
   },
-  username: {
-    type: DataTypes.STRING,
-  },
-  password: {
-    type: DataTypes.STRING,
-  },
-  email: {
-    type: DataTypes.STRING,
-  },
-  phoneNumber: {
-    type: DataTypes.STRING,
-  },
-  address: {
-    type: DataTypes.STRING,
-  },
-  role: {
-    type: DataTypes.STRING,
-  },
-  date: {
-    type: DataTypes.DATE,
-  },
-},{
+  {
     sequelize,
-    timestamps: true
-});
-
+    timestamps: true,
+  }
+);
 
 module.exports = User;

@@ -14,34 +14,34 @@ const User = require("./src/models/user.model");
 
 const seedDb = expressAsyncHandler(async (req, res) => {
   try {
-    await User.sync({ force: true });
-    console.log("User model build success");
+    // await User.sync({ alter: true });
+    // console.log("User model build success");
 
-    await Cluster.sync({ force: true });
-    console.log("Cluster model build success");
+    // await Cluster.sync({ alter: true });
+    // console.log("Cluster model build success");
 
-    await Cinema.sync({ force: true });
-    console.log("Cinema model build success");
+    // await Cinema.sync({ alter: true });
+    // console.log("Cinema model build success");
 
-    await Room.sync({ force: true });
-    console.log("Room model build success");
+    // await Room.sync({ alter: true });
+    // console.log("Room model build success");
 
-    await Film.sync({ force: true });
-    console.log("Film model build success");
+    // await Film.sync({ alter: true });
+    // console.log("Film model build success");
 
-    await PlayTime.sync({ force: true });
-    console.log("Film model build success");
+    // await PlayTime.sync({ alter: true });
+    // console.log("Film model build success");
 
-    await Comment.sync({ force: true });
-    console.log("Comment model build success");
+    // await Comment.sync({ alter: true });
+    // console.log("Comment model build success");
 
-    await DisCount.sync({ force: true });
-    console.log("Discount model build success");
+    // await DisCount.sync({ alter: true });
+    // console.log("Discount model build success");
 
-    await Banner.sync({ force: true });
-    console.log("Banner model build success");
+    // await Banner.sync({ alter: true });
+    // console.log("Banner model build success");
 
-    await Book.sync({ force: true });
+    await Book.sync({ alter: true });
     console.log("Book model build success");
 
     res.json("success");

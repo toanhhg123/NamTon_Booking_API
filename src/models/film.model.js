@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require("sequelize");
 const { sequelize } = require("../connect/sequelize");
+const Banner = require("./banner.model");
 const Cinema = require("./Cinema.model");
 
 class Film extends Model {
@@ -73,7 +74,6 @@ Film.init(
   {
     sequelize,
     timestamps: true,
-    hooks: {},
   }
 );
 

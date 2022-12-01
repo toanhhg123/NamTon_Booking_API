@@ -5,6 +5,7 @@ const {
   getAllBookByFilm,
   getAllBookByRoom,
   getAllBookById,
+  getAllBook,
 } = require("../controllers/book.controller");
 
 const route = Router();
@@ -14,5 +15,6 @@ route.delete("/delete/:id", deteteBook);
 route.get("/film/:id", getAllBookByFilm);
 route.get("/room/:id", getAllBookByRoom);
 route.get("/book/:id", getAllBookById);
+route.get("/", getAllBook);
 
 module.exports = route;
