@@ -16,6 +16,19 @@ const createFilm = expressAsyncHandler(async (req, res) => {
   }
 });
 
+const updateFilm = expressAsyncHandler(async (req, res) => {
+  try {
+    const film = await Film.update(
+      { ...req.body },
+      { where: { id: req.params.id } }
+    );
+
+    return res.json(film);
+  } catch (error) {
+    return res.status(404).json(error.message);
+  }
+});
+
 const getAllFilm = expressAsyncHandler(async (req, res) => {
   try {
     const flims = await Film.findAll({ include: Banner });
@@ -42,4 +55,5 @@ module.exports = {
   createFilm,
   getAllFilm,
   deleteFilm,
+  updateFilm,
 };

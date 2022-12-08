@@ -26,6 +26,19 @@ const getAllCinema = expressAsyncHandler(async (req, res) => {
   }
 });
 
+const updateCinema = expressAsyncHandler(async (req, res) => {
+  try {
+    const cinema = await Cinema.update(
+      { ...req.body },
+      { where: { id: req.params.id } }
+    );
+
+    return res.json(cinema);
+  } catch (error) {
+    return res.status(404).json(error.message);
+  }
+});
+
 const getAllCinemaByCluster = expressAsyncHandler(async (req, res) => {
   try {
     const { id } = req.params;
@@ -51,4 +64,5 @@ module.exports = {
   getAllCinema,
   deleteCinema,
   getAllCinemaByCluster,
+  updateCinema,
 };

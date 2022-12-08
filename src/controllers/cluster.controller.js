@@ -33,8 +33,22 @@ const deleteCluster = expressAsyncHandler(async (req, res) => {
   }
 });
 
+const updateCluster = expressAsyncHandler(async (req, res) => {
+  try {
+    const cluster = await Cluster.update(
+      { ...req.body },
+      { where: { id: req.params.id } }
+    );
+
+    return res.json(cluster);
+  } catch (error) {
+    return res.status(404).json(error.message);
+  }
+});
+
 module.exports = {
   createCluster,
   deleteCluster,
   getAllCluster,
+  updateCluster,
 };
