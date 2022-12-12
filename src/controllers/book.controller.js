@@ -7,6 +7,11 @@ const User = require("../models/user.model");
 
 const createBook = expressAsyncHandler(async (req, res) => {
   try {
+    const { playTimeId, seatIndex } = req.body;
+
+    if (await Book.findOne({ where: { playTimeId, seatIndex } })) {
+      throw new Error("This place is already occupied");
+    }
     const data = await Book.create(req.body);
     return res.json(data);
   } catch (error) {
